@@ -49,6 +49,27 @@
         display: block;
     }
 </style -->
+<style>
+    * { padding: 0; margin: 0; box-sizing: border-box; }
+
+    html, body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
+        touch-action: manipulation;
+    }
+
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    canvas {
+        display: block;
+    }
+</style>
 <script>
 	var game = new Phaser.Game(600, 320, Phaser.CANVAS, null, {preload: preload, create: create, update: update});
 	var rocket;
@@ -156,6 +177,7 @@
 
 	textStyle = { font: 'bold 18px Arial', fill: '#F39C12' };
 	textStyle1 = { font: 'bold 30px Arial', fill: '#8A2B56' };
+
 	function preload() {
 		game.load.audio('backgroundAudio', 'start1.mp3');
 		game.load.audio('startAudio', 'start.wav');
@@ -169,8 +191,8 @@
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVertically = true;
         //game.scale.forceOrientation(true, false);
-        //game.scale.refresh();
-        game.stage.backgroundColor = '#eee';
+        game.scale.refresh();
+        game.stage.backgroundColor = '#000';
 
 		//fond de jeu
 		var i=1;
