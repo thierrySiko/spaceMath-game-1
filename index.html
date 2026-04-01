@@ -33,7 +33,7 @@
     <script src="js/phaser.min.js"></script>
 </head>
 <body>
-<style>
+<!--style>
     * { padding: 0; margin: 0; box-sizing: border-box; }
     html, body {
         width: 100%;
@@ -48,7 +48,7 @@
     canvas {
         display: block;
     }
-</style>
+</style -->
 <script>
 	var game = new Phaser.Game(600, 320, Phaser.CANVAS, null, {preload: preload, create: create, update: update});
 	var rocket;
@@ -169,7 +169,7 @@
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVertically = true;
         //game.scale.forceOrientation(true, false);
-        game.scale.refresh();
+        //game.scale.refresh();
         game.stage.backgroundColor = '#eee';
 
 		//fond de jeu
