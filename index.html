@@ -61,11 +61,11 @@
 	var leftButton;
 	var rightButton;
 	var downButton;
-	
+
 	var barScore;
 	var barQuiz;
 	var barLives;
-	
+
 	var scoreText;
 	var score = 0;
 	var scoreIcon;
@@ -73,25 +73,25 @@
 	var finalScore;
 	var finalScoreText;
 	var lives = 3;
-	
+
 	var playingAddition = false;
 	var playingSubstraction = false;
 	var playingMultiplication = false;
 	var playingDivision = false;
 	var startButton;
-	
+
 	var addQuizText;
 	var subQuiztext;
 	var multiQuizText;
 	var divQuizText;
-	
-	var arr=new Array(); 
+
+	var arr=new Array();
 	var arrX=new Array();
 	var arrY=new Array();
 	var answerX;
 	var answerY;
 	var j;
-	
+
 	var fond1;
 	var fond2;
 	var fond3;
@@ -100,7 +100,7 @@
 	var fondWin;
 	var fondLost;
 	var fondLost1;
-	
+
 	var addButton;
 	var subButton;
 	var multiButton;
@@ -128,7 +128,7 @@
 	var restartButton;
 	var restartButton1;
 	var pause=false;
-	
+
 	var Time = 0;
 	var timeIcon;
 	var timeIcon1;
@@ -228,15 +228,15 @@
 		backgroundAudio = game.add.audio('backgroundAudio');
 		//backgroundAudio.play();
 		//backgroundAudio.loopFull(0.6);
-		
+
 		startAudio = game.add.audio('startAudio');
-		
+
 		successAudio=game.add.audio('successAudio');
 		keyPressAudio=game.add.audio('keyPressAudio');
 		lostAudio=game.add.audio('lostAudio');
 		gainAudio=game.add.audio('gainAudio');
 		overAudio=game.add.audio('overAudio');
-		
+
 		game.input.onDown.addOnce(function () {
 			if (game.sound.context && game.sound.context.state === 'suspended') {
 				game.sound.context.resume();
@@ -249,7 +249,7 @@
 
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 		//game.physics.arcade.checkCollision.up = false;
-		
+
 		fond1 = game.add.sprite(0, 0, 'fond1');
 		fond = game.add.sprite(0, 0, 'fond');
 		fond.visible=false;
@@ -269,30 +269,30 @@
 		rocket.checkWorldBounds = true;
 		rocket.body.immovable = false;
 		//rocket.body.moves = true;
-		
+
 		planet2 = game.add.sprite(150,30,'planet2');
 		game.physics.enable(planet2, Phaser.Physics.ARCADE);
 		planet2.body.immovable = true;
 		planet2.anchor.set(0.5);
-			
+
 		planet3 = game.add.sprite(planet2.x+110, planet2.y,'planet3');
 		game.physics.enable(planet3, Phaser.Physics.ARCADE);
 		planet3.body.immovable = true;
 		planet3.anchor.set(0.5);
-			
+
 		planet4 = game.add.sprite(planet3.x+110, planet2.y,'planet4');
 		game.physics.enable(planet4, Phaser.Physics.ARCADE);
 		planet4.body.immovable = true;
 		planet4.anchor.set(0.5);
-			
+
 		planet5 = game.add.sprite(planet4.x+110, planet2.y,'planet5');
 		game.physics.enable(planet5, Phaser.Physics.ARCADE);
 		planet5.body.immovable = true;
 		planet5.anchor.set(0.5);
-	
+
 		upButton = game.add.button(game.world.width-60, game.world.height-80, 'upButton', up, this);
 		upButton.anchor.set(0.5);
-		
+
 		barScore = game.add.sprite(50, 20, 'barScore');
 		barScore.anchor.set(0.5);
 		barScore.visible=false;
@@ -305,18 +305,18 @@
 
 		leftButton = game.add.button(upButton.x-30, upButton.y+30, 'leftButton',left,this);
 		leftButton.anchor.set(0.5);
-		
+
 		rightButton = game.add.button(upButton.x+30, upButton.y+30, 'rightButton',right,this);
 		rightButton.anchor.set(0.5);
-		
+
 		downButton = game.add.button(upButton.x, upButton.y+60, 'downButton',down,this);
 		downButton.anchor.set(0.5);
-		
+
 		upButton.visible=false;
 		leftButton.visible=false;
 		rightButton.visible=false;
 		downButton.visible=false;
-		
+
 		heart1 = game.add.sprite(game.world.width-100, 8, 'heart1');
 		heart1.visible=false;
 		heart2 = game.add.sprite(game.world.width-70, 8, 'heart2');
@@ -325,48 +325,48 @@
 		heart3.visible=false;
 		startButton = game.add.button(game.world.width*0.5, game.world.height*0.5, 'startButton', startGame, this);
 		startButton.anchor.set(0.5);
-		
+
 		startButton1 = game.add.button(game.world.width*0.5, game.world.height*0.5, 'startButton1', startGame, this);
 		startButton1.anchor.set(0.5);
-		
+
 		startButton1.visible=false;
-		
+
 		rocket.events.onOutOfBounds.add(rocketLeaveScreen, this);
-		
+
 		addButton = game.add.button(200, 90, 'addButton', startAddition, this);
 		addButton.anchor.set(0.5);
 		addButton.visible=false;
-		
+
 		subButton = game.add.button(addButton.x+230, 90, 'subButton', startSubstraction, this);
 		subButton.anchor.set(0.5);
 		subButton.visible=false;
-		
+
 		multiButton = game.add.button(addButton.x, 200, 'multiButton', startMultiplication, this);
 		multiButton.anchor.set(0.5);
 		multiButton.visible=false;
-		
+
 		divButton = game.add.button(addButton.x+230, 200, 'divButton', startDivision, this);
 		divButton.anchor.set(0.5);
 		divButton.visible=false;
-		
+
 		homeButton = game.add.button(20, game.world.height-90, 'homeButton', homeButton, this);
 		homeButton.anchor.set(0.5);
 		homeButton.visible=false;
-		
-		
-		
+
+
+
 		soundOffButton = game.add.button(20, game.world.height-125, 'soundOffButton', soundOffButton, this);
 		soundOffButton.anchor.set(0.5);
 		soundOffButton.visible=false;
-		
+
 		soundOnButton = game.add.button(20, game.world.height-125, 'soundOnButton', soundOnButton, this);
 		soundOnButton.anchor.set(0.5);
-		
-		
+
+
 		successButton = game.add.button(game.world.width/2, game.world.height/2, 'successButton', successButton, this);
 		successButton.anchor.set(0.5);
 		successButton.visible=false;
-		
+
 		failureButton = game.add.button(game.world.width/2, game.world.height/2, 'failureButton', failureButton, this);
 		failureButton.anchor.set(0.5);
 		failureButton.visible=false;
@@ -374,20 +374,20 @@
 		pauseButton = game.add.button(20, game.world.height-50, 'pauseButton', pauseButton, this);
 		pauseButton.anchor.set(0.5);
 		pauseButton.visible=false;
-		
+
 		playButton = game.add.button(20, game.world.height-50, 'playButton', playButton, this);
 		playButton.anchor.set(0.5);
 		playButton.visible=false;
 
 		startButton.onInputOver.add(over, this);
 		startButton.onInputOut.add(out, this);
-		
+
 		//restartButton = game.add.button(game.world.width*0.5, game.world.height*0.5, 'restartButton', startGame, this);
 		//restartButton.anchor.set(0.5);
-		
+
 		//restartButton1 = game.add.button(game.world.width*0.5, game.world.height*0.5, 'startButton1', startGame, this);
 		//restartButton1.anchor.set(0.5);
-		
+
 		//restartButton.visible=false;
 		//restartButton1.visible=false;
 
@@ -410,7 +410,7 @@
 		etShip1.body.bounce.set(1);
 		etShip1.body.velocity.set(0,0);
 
-		
+
 
 		scoreText = game.add.text(28, 8, '0' , textStyle);
 		scoreText.visible=false;
@@ -424,7 +424,7 @@
 		fondWin= game.add.sprite(0, 0, 'fondWin');
 		fondWin.visible=false;
 		copyText = game.add.text(450, 300, 'By SIKO Thierry', textStyle);
-		
+
 	}
 	function update() {
 
@@ -438,15 +438,15 @@
 		planet4.rotation+=0.01;
 		planet5.rotation+=0.01;
 	}
-		
+
 		keyboardUSe();
 	}
-	
+
 	function initAddNumbers() {
 			number1=Phaser.Math.between(1,5);
 			number2=Phaser.Math.between(1,5);
 			answer=number1+number2;
-			arr[posAnswer]=answer;
+			//arr[posAnswer]=answer;
 			addQuizText = game.add.text(5, game.world.height-32, number1+' + '+ number2+' = ? ', textStyle);
 			addQuizText.visible=false;
 			planetInfo = {
@@ -462,8 +462,12 @@
 				},
 				padding: 80
 			}
+
+			arr = buildUniqueAnswers(answer, planetInfo.count.row * planetInfo.count.col, 2, 40);
+		    posAnswer = arr.indexOf(answer);
+
 			numbers = game.add.group();
-			
+
 			for(i=0;i<posAnswer;i++){
 				arr[i]=Phaser.Math.between(2,10);
 			}
@@ -472,7 +476,7 @@
 			}
 			i=0;
 			j=0;
-			
+
 			for(c=0; c<planetInfo.count.col; c++) {
 				for(r=0; r<planetInfo.count.row; r++) {
 					number=arr[i];
@@ -489,9 +493,9 @@
 					j++;
 				}
 		}
-	
+
 	}
-	
+
 	function initSubNumbers() {
 			number1=Phaser.Math.between(5,10);
 			number2=Phaser.Math.between(1,5);
@@ -513,7 +517,7 @@
 				padding: 80
 			}
 			numbers = game.add.group();
-			
+
 			for(i=0;i<posAnswer;i++){
 				arr[i]=Phaser.Math.between(1,5);
 			}
@@ -522,7 +526,7 @@
 			}
 			i=0;
 			j=0;
-			
+
 			for(c=0; c<planetInfo.count.col; c++) {
 				for(r=0; r<planetInfo.count.row; r++) {
 					number=arr[i];
@@ -539,8 +543,8 @@
 					j++;
 				}
 		}
-		
-		
+
+
 	}
 	function initMultiNumbers() {
 			number1=Phaser.Math.between(1,5);
@@ -564,7 +568,7 @@
 				padding: 80
 			}
 			numbers = game.add.group();
-			
+
 			for(i=0;i<posAnswer;i++){
 				arr[i]=Phaser.Math.between(1,25);
 			}
@@ -573,7 +577,7 @@
 			}
 			i=0;
 			j=0;
-			
+
 			for(c=0; c<planetInfo.count.col; c++) {
 				for(r=0; r<planetInfo.count.row; r++) {
 					number=arr[i];
@@ -590,7 +594,7 @@
 					j++;
 				}
 		}
-	
+
 	}
 	function initDivNumbers() {
 			number1=Phaser.Math.between(1,25);
@@ -614,7 +618,7 @@
 				padding: 80
 			}
 			numbers = game.add.group();
-			
+
 			for(i=0;i<posAnswer;i++){
 				arr[i]=Phaser.Math.between(1,5);
 			}
@@ -639,7 +643,7 @@
 					j++;
 				}
 		}
-	
+
 	}
 	function keyboardUSe(){
 		if(playingAddition||playingSubstraction||playingMultiplication||playingDivision){
@@ -670,16 +674,16 @@
 
 	}
 	function up() {
-		
+
 		if(playingAddition||playingSubstraction||playingMultiplication||playingDivision){
 		rocket.body.velocity.set(0, -80);
 		rocket.angle=0;
 		keyPressAudio.play();
 		}
-		
+
 	}
 	function left() {
-		
+
 		if(playingAddition||playingSubstraction||playingMultiplication||playingDivision){
 		rocket.body.velocity.set(-80, 0);
 		rocket.angle=-90;
@@ -693,17 +697,17 @@
 		keyPressAudio.play();
 		}
 	}
-	
+
 	function down() {
-		
+
 		if(playingAddition||playingSubstraction||playingMultiplication||playingDivision){
 		rocket.body.velocity.set(0, 80);
 		rocket.angle=180;
 		keyPressAudio.play();
 		}
-		
+
 	}
-	
+
 	function rocketHitNumber(rocket, number) {
 		var killTween = game.add.tween(number.scale);
 		if((rocket.x>arrX[posAnswer]-30)&&(rocket.x<arrX[posAnswer]+30)&&(rocket.y>arrY[posAnswer]-50)&&(rocket.y<arrY[posAnswer]+50)){
@@ -717,7 +721,7 @@
 		score += 10;
 		scoreText.setText(score);
 			if(score === planetInfo.count.row*planetInfo.count.col*10) {
-				
+
 				fondWin.visible=true;
 				winButton = game.add.button(game.world.width/2, (game.world.height/2)+100, 'winButton', win, this);
 				winButton.anchor.set(0.5);
@@ -758,7 +762,7 @@
 		arrX.splice(posAnswer,1);
 		arrY.splice(posAnswer,1);
 		posAnswer=Phaser.Math.between(0,arr.length-1);
-		
+
 		rocket.reset(game.world.width*0.5, game.world.height-20);
 		if(playingAddition){
 			number1=Phaser.Math.between(1,arr[posAnswer]/2);
@@ -792,17 +796,17 @@
 		}
 			successAudio.play();
 			successButton.visible=true;
-			game.time.events.add(Phaser.Timer.SECOND *1, success, this);  
+			game.time.events.add(Phaser.Timer.SECOND *1, success, this);
 	}
 		else{
 			rocketLeaveScreen();
-			
+
 		}
 		rocket.angle=0;
-		
-		
+
+
 	}
-	
+
 		function rocketLeaveScreen() {
 		lives--;
 		if(lives) {
@@ -812,12 +816,12 @@
 			if(lives==1){
 				heart2.visible=false;
 			}
-			
+
 			rocket.reset(game.world.width*0.5, game.world.height-25);
 			rocket.angle=0;
-			
+
 			failureButton.visible=true;
-			game.time.events.add(Phaser.Timer.SECOND *1, failure, this);  
+			game.time.events.add(Phaser.Timer.SECOND *1, failure, this);
 			lostAudio.play();
 		}
 		else {
@@ -841,7 +845,7 @@
 			overAudio.play();
 		}
 	}
-	
+
 	function startGame() {
 		startButton.destroy();
 		startButton1.destroy();
@@ -855,10 +859,10 @@
 		//startAudio.loopFull(0.6);
 		copyText.visible=false;
 	}
-	
-	
+
+
 	function startAddition() {
-		
+
 		scoreIcon.visible=true;
 		timeIcon.visible=true;
 		text.visible=true;
@@ -872,14 +876,14 @@
 		initAddNumbers();
 		fond.visible=false;
 		fond2.visible=true;
-		
+
 		addQuizText.visible=true;
-		
+
 		upButton.visible=true;
 		leftButton.visible=true;
 		rightButton.visible=true;
 		downButton.visible=true;
-		
+
 		pauseButton.visible=true;
 		homeButton.visible=true;
 		scoreText.visible=true;
@@ -908,14 +912,14 @@
 		initSubNumbers();
 		fond.visible=false;
 		fond3.visible=true;
-		
+
 		subQuizText.visible=true;
-		
+
 		upButton.visible=true;
 		leftButton.visible=true;
 		rightButton.visible=true;
 		downButton.visible=true;
-		
+
 		pauseButton.visible=true;
 		homeButton.visible=true;
 		scoreText.visible=true;
@@ -940,19 +944,19 @@
 		subButton.destroy();
 		multiButton.destroy();
 		divButton.destroy();
-		
+
 		playingMultiplication = true;
 		initMultiNumbers()
 		fond.visible=false;
 		fond4.visible=true;
-		
+
 		multiQuizText.visible=true;
-		
+
 		upButton.visible=true;
 		leftButton.visible=true;
 		rightButton.visible=true;
 		downButton.visible=true;
-		
+
 		pauseButton.visible=true;
 		homeButton.visible=true;
 		scoreText.visible=true;
@@ -978,7 +982,7 @@
 		subButton.destroy();
 		multiButton.destroy();
 		divButton.destroy();
-		
+
 		playingDivision = true;
 		initDivNumbers()
 		fond.visible=false;
@@ -988,7 +992,7 @@
 		leftButton.visible=true;
 		rightButton.visible=true;
 		downButton.visible=true;
-		
+
 		pauseButton.visible=true;
 		homeButton.visible=true;
 		scoreText.visible=true;
@@ -1005,7 +1009,7 @@
 		barQuiz.visible=true;
 		barLives.visible=true;
 	}
-	
+
 	function getFactors(n){
     // Create an empty list for factors
     var factors= new Array();
@@ -1020,16 +1024,16 @@
 	}
 	function over(){
 		startButton.visible=false;
-		startButton1.visible=true;		
+		startButton1.visible=true;
 	}
 	function out(){
 		startButton1.visible=false;
 		startButton.visible=true;
 	}
-	
+
 	function homeButton(){
 		location.reload();
-		
+
 	}
 	function pauseButton(){
 		pause=true;
@@ -1046,14 +1050,14 @@
 		else if(playingDivision){
 			playingDivision=false;
 		}
-		
+
 		rocket.body.velocity.set(0,0);
 		etShip.body.velocity.set(0,0);
 		etShip1.body.velocity.set(0,0);
 		pauseButton.visible=false;
 		playButton.visible=true;
 		game.time.events.remove(timerEvents);
-			
+
 	}
 	function playButton(){
 		if(!playingAddition){
@@ -1110,24 +1114,24 @@
 		successButton.visible=false;
 	}
 	function failure(){
-		
+
 		failureButton.visible=false;
 	}
 	function lost(){
-		
+
 		//lostButton.visible=false;
 		location.reload();
 	}
 	function win(){
-		
+
 		//winButton.visible=false;
 		location.reload();
 	}
-	
+
 	function haut(){
 		rocket.body.velocity.set(0,-30);
-		game.time.events.add(Phaser.Timer.SECOND *0.5, droite, this);  
-		//game.time.events.add(Phaser.Timer.SECOND *1, bas, this);  
+		game.time.events.add(Phaser.Timer.SECOND *0.5, droite, this);
+		//game.time.events.add(Phaser.Timer.SECOND *1, bas, this);
 	}
 	function droite(){
 		rocket.body.velocity.set(30,0);
@@ -1139,14 +1143,29 @@
 	}
 	function gauche(){
 		rocket.body.velocity.set(-30,0);
-		
+
 	}
-	
+
 	function updateTime() {
 
     Time++;
 
     text.setText(Time+'s');
+	}
+
+    function buildUniqueAnswers(correctAnswer, totalChoices, min, max) {
+		var results = [correctAnswer];
+
+		while (results.length < totalChoices) {
+			var candidate = Phaser.Math.between(min, max);
+
+			if (results.indexOf(candidate) === -1) {
+				results.push(candidate);
+			}
+		}
+
+		Phaser.ArrayUtils.shuffle(results);
+		return results;
 	}
 </script>
 </body>
