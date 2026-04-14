@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<link rel="icon" href="medias/img/image/rocket1.png">
-    <title>SpaceMath by SIKO Thierry for Caramel</title>
+    <title>MathCosmos-1 by SIKO Thierry</title>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158854369-41"></script>
     <script>
@@ -446,7 +446,7 @@
 			number1=Phaser.Math.between(1,5);
 			number2=Phaser.Math.between(1,5);
 			answer=number1+number2;
-			//arr[posAnswer]=answer;
+
 			addQuizText = game.add.text(5, game.world.height-32, number1+' + '+ number2+' = ? ', textStyle);
 			addQuizText.visible=false;
 			planetInfo = {
@@ -463,17 +463,11 @@
 				padding: 80
 			}
 
-			arr = buildUniqueAnswers(answer, planetInfo.count.row * planetInfo.count.col, 2, 40);
+			arr = buildUniqueAnswers(answer, planetInfo.count.row * planetInfo.count.col, 1, 20);
 		    posAnswer = arr.indexOf(answer);
 
 			numbers = game.add.group();
 
-			for(i=0;i<posAnswer;i++){
-				arr[i]=Phaser.Math.between(2,10);
-			}
-			for(i=posAnswer+1;i<planetInfo.count.col*planetInfo.count.row;i++){
-				arr[i]=Phaser.Math.between(2,10);
-			}
 			i=0;
 			j=0;
 
@@ -500,7 +494,7 @@
 			number1=Phaser.Math.between(5,10);
 			number2=Phaser.Math.between(1,5);
 			answer=number1-number2;
-			arr[posAnswer]=answer;
+
 			subQuizText = game.add.text(5, game.world.height-32, number1+' - '+ number2+' = ? ', textStyle);
 			subQuizText.visible=false;
 			planetInfo = {
@@ -516,14 +510,12 @@
 				},
 				padding: 80
 			}
+
+			arr = buildUniqueAnswers(answer, planetInfo.count.row * planetInfo.count.col, 1, 10);
+		    posAnswer = arr.indexOf(answer);
+
 			numbers = game.add.group();
 
-			for(i=0;i<posAnswer;i++){
-				arr[i]=Phaser.Math.between(1,5);
-			}
-			for(i=posAnswer+1;i<planetInfo.count.col*planetInfo.count.row;i++){
-				arr[i]=Phaser.Math.between(1,5);
-			}
 			i=0;
 			j=0;
 
@@ -551,7 +543,7 @@
 			var fact=Phaser.Math.between(1,5);
 			answer=number1*fact;
 			number2=answer/number1;
-			arr[posAnswer]=answer;
+
 			multiQuizText = game.add.text(5, game.world.height-32, number1+' x '+ number2+' = ? ', textStyle);
 			multiQuizText.visible=false;
 			planetInfo = {
@@ -567,14 +559,12 @@
 				},
 				padding: 80
 			}
+
+			arr = buildUniqueAnswers(answer, planetInfo.count.row * planetInfo.count.col, 1, 50);
+		    posAnswer = arr.indexOf(answer);
+
 			numbers = game.add.group();
 
-			for(i=0;i<posAnswer;i++){
-				arr[i]=Phaser.Math.between(1,25);
-			}
-			for(i=posAnswer+1;i<planetInfo.count.col*planetInfo.count.row;i++){
-				arr[i]=Phaser.Math.between(1,25);
-			}
 			i=0;
 			j=0;
 
@@ -601,7 +591,7 @@
 			var ind=Phaser.Math.between(0,(getFactors(number1).length)-1);
 			number2=getFactors(number1)[ind];
 			answer=number1/number2;
-			arr[posAnswer]=answer;
+
 			divQuizText = game.add.text(5, game.world.height-32, number1+' / '+ number2+' = ? ', textStyle);
 			divQuizText.visible=false;
 			planetInfo = {
@@ -617,14 +607,12 @@
 				},
 				padding: 80
 			}
+
+			arr = buildUniqueAnswers(answer, planetInfo.count.row * planetInfo.count.col, 1, 10);
+		    posAnswer = arr.indexOf(answer);
+
 			numbers = game.add.group();
 
-			for(i=0;i<posAnswer;i++){
-				arr[i]=Phaser.Math.between(1,5);
-			}
-			for(i=posAnswer+1;i<planetInfo.count.col*planetInfo.count.row;i++){
-				arr[i]=Phaser.Math.between(1,5);
-			}
 			i=0;
 			j=0;
 			for(c=0; c<planetInfo.count.col; c++) {
